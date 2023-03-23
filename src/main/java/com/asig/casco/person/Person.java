@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 @Data
-@Entity
+@Entity(name="PERSON")
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "persons", schema = "casco")
