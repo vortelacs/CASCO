@@ -1,4 +1,4 @@
-package com.asig.casco.insurer;
+package com.asig.casco.insurance.insurer;
 
 import lombok.Data;
 
@@ -11,6 +11,6 @@ import javax.persistence.Id;
 public class Insurer {
     @Id
     @GeneratedValue
-    private String internID;
+    private int internID;
     private String companyName;
 }

@@ -1,23 +1,24 @@
-package com.asig.casco.person;
+package com.asig.casco.insurance.person;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import java.util.UUID;
+
 
 @Data
 @Entity(name="PERSON")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "persons", schema = "casco")
+@Table(name = "person", schema = "casco")
 public class Person {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private String internID;
+    private UUID internID;
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
@@ -26,8 +27,6 @@ public class Person {
     private String phoneNumber;
     @Column(name = "IDNP")
     private String IDNP;
-    @Email
-    @Column(name = "email")
-    private String email;
+
 
 }

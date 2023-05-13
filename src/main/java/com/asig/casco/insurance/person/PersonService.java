@@ -1,9 +1,10 @@
-package com.asig.casco.person;
+package com.asig.casco.insurance.person;
 
-;
 import com.asig.casco.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class PersonService {
@@ -14,13 +15,8 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-/*
-    public List<Person> getAllPeople() {
-        return personRepository.findAll();
-    }
-*/
 
-    public Person getPersonById(Long id) throws ResourceNotFoundException{
+    public Person getPersonById(UUID id) throws ResourceNotFoundException{
         return personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person not found with id: " + id));
     }
 
@@ -28,13 +24,13 @@ public class PersonService {
         return personRepository.save(person);
     }
 
-    public Person updatePerson(Long id, Person person) throws ResourceNotFoundException {
+    public Person updatePerson(UUID id, Person person) throws ResourceNotFoundException {
         Person existingPerson = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person not found with id: " + id));
         existingPerson.setFirstName(person.getFirstName());
         return personRepository.save(existingPerson);
     }
 
-    public void deletePerson(Long id) {
+    public void deletePerson(UUID id) {
         personRepository.deleteById(id);
     }
 }
