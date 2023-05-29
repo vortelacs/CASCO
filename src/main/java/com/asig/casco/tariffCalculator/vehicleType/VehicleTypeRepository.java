@@ -8,5 +8,5 @@ import java.util.UUID;
 @Repository
 public interface VehicleTypeRepository extends JpaRepository<VehicleType, UUID> {
 
-    public VehicleType findByTypeName(String typeName);
+    VehicleType findByTypeName(String typeName);
 }

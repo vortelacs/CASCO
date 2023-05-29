@@ -2,7 +2,6 @@ package com.asig.casco.insurance.insurance;
 
 import com.asig.casco.insurance.countryBlock.CountryBlock;
 import com.asig.casco.insurance.insurer.Insurer;
-import com.asig.casco.insurance.person.Person;
 import com.asig.casco.insurance.vehicle.Vehicle;
 import com.asig.casco.user.User;
 import lombok.AllArgsConstructor;
@@ -11,15 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
-
-enum InsuranceType{
-    CASCO,
-    RCA,
-    GreenCard;
-        }
 
 @Data
 @AllArgsConstructor
@@ -33,7 +24,7 @@ public class Insurance {
     private UUID internID;
 
     @Column(name = "type")
-    private InsuranceType type;
+    private String type;
 
     @OneToOne()
     @Column(name = "idVehicle")

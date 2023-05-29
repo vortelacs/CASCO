@@ -8,8 +8,13 @@ import java.util.UUID;
 @Service
 public class InsuranceService {
 
-    @Autowired
+
     InsuranceRepository insuranceRepository;
+
+    @Autowired
+    public InsuranceService(InsuranceRepository insuranceRepository){
+        this.insuranceRepository = insuranceRepository;
+    }
 
     public Insurance getInsurance(UUID id){
         return insuranceRepository.findByInternID(id);

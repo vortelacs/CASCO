@@ -9,7 +9,7 @@ public class AgeCategoryService {
     AgeCategoryRepository ageCategoryRepository;
 
     @Autowired
-    public void AgeCategoryService(AgeCategoryRepository ageCategoryRepository){
+    public AgeCategoryService(AgeCategoryRepository ageCategoryRepository){
         this.ageCategoryRepository = ageCategoryRepository;
     }
 

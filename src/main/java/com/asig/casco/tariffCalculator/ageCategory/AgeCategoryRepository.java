@@ -8,5 +8,5 @@ import java.util.UUID;
 @Repository
 public interface AgeCategoryRepository extends JpaRepository<AgeCategory, UUID> {
 
-    public AgeCategory findAgeCategoryByCategoryName(String categoryName);
+    AgeCategory findAgeCategoryByCategoryName(String categoryName);
 }

@@ -1,5 +1,6 @@
 package com.asig.casco.insurance.vehicle;
 
+import com.asig.casco.tariffCalculator.vehicleType.VehicleType;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,12 +13,11 @@ public class Vehicle {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int internID;
+    private UUID internID;
 
     @ManyToOne(cascade = CascadeType.ALL)
-
-    @Column(name = "")
-    private UUID type;
+    @Column(name = "type")
+    private VehicleType type;
 
     @Column(name = "make")
     private String make;

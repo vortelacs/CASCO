@@ -1,6 +1,5 @@
 package com.asig.casco.tariffCalculator;
 
-import com.asig.casco.insurance.insurance.Insurance;
 import com.asig.casco.tariffCalculator.ageCategory.AgeCategory;
 import com.asig.casco.tariffCalculator.ageCategory.AgeCategoryRepository;
 import com.asig.casco.tariffCalculator.ageCategory.AgeCategoryService;
@@ -28,7 +27,7 @@ public class TariffService {
 
 
     private Float calculate(AgeCategory ageCategoryByCategoryName, VehicleType vehicleTypeByTypeName) {
-        Tariff tariff = tariffRepository.findByAgeCategoryAndCarType(ageCategoryByCategoryName, vehicleTypeByTypeName);
+        Tariff tariff = tariffRepository.findByAgeCategoryAndVehicleType(ageCategoryByCategoryName, vehicleTypeByTypeName);
 
         return tariff.getValue();
     }

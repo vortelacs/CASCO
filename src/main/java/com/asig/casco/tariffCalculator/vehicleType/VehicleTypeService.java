@@ -7,7 +7,7 @@ public class VehicleTypeService {
 
     VehicleTypeRepository vehicleTypeRepository;
 
-    public void VehicleTypeService(VehicleTypeRepository vehicleTypeRepository){
+    public VehicleTypeService(VehicleTypeRepository vehicleTypeRepository){
         this.vehicleTypeRepository = vehicleTypeRepository;
     }
 

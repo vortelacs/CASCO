@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TariffRepository  extends JpaRepository<Tariff, Long> {
 
-    Tariff findByAgeCategoryAndCarType(AgeCategory ageCategory, VehicleType vehicleType);
+    Tariff findByAgeCategoryAndVehicleType(AgeCategory ageCategory, VehicleType vehicleType);
 }

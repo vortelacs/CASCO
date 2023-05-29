@@ -1,6 +1,5 @@
 package com.asig.casco.tariffCalculator;
 
-import com.asig.casco.tariffCalculator.ageCategory.AgeCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,7 @@ public class TariffController {
     TariffService tariffService;
 
     @Autowired
-    public void TariffController(TariffService tariffService){
+    public TariffController(TariffService tariffService){
         this.tariffService = tariffService;
     }
 
