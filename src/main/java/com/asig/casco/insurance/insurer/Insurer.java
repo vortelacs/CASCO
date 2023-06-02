@@ -1,16 +1,13 @@
 package com.asig.casco.insurance.insurer;
 
 import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import jakarta.persistence.*;
 
 @Data
 @Entity
 public class Insurer {
+
     @Id
-    @GeneratedValue
-    private int internID;
+    private int ID;
     private String companyName;
 }

@@ -1,13 +1,13 @@
 spring:
   datasource:
-    password: password
-    url: jdbc:mysql://localhost:3306/db
+    password: 1234
+    url: jdbc:mysql://localhost:3306/casco
     username: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 
 server:
   error:

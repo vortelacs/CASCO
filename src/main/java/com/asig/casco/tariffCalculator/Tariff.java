@@ -6,32 +6,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Data
-@Entity(name="PERSON")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tariff", schema = "tariff")
+@Table
 public class Tariff {
 
     @Id
     @GeneratedValue
     private String internID;
 
-    @Column
     @ManyToOne(cascade = CascadeType.ALL)
     @MapsId
-    @JoinColumn(name = "age_fk")
     private AgeCategory ageCategory;
 
-    @Column
     @ManyToOne(cascade = CascadeType.ALL)
     @MapsId
-    @JoinColumn(name = "car_type_fk")
     private VehicleType vehicleType;
 
-    @Column(name = "tariff_value")
     private Float value;
 
 }

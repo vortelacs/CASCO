@@ -1,31 +1,36 @@
 package com.asig.casco.insurance.person;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+
 import java.util.UUID;
 
 
 @Data
-@Entity(name="PERSON")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "person", schema = "casco")
+@Table
 public class Person {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
-    private UUID internID;
-    @Column(name = "firstName")
+    @Column
+    private UUID ID;
+
+    @Column
     private String firstName;
-    @Column(name = "lastName")
+
+    @Column
     private String lastName;
-    @Column(name = "phone")
+
+    @Column
     private String phoneNumber;
-    @Column(name = "IDNP")
+
+    @Column
     private String IDNP;
 
 

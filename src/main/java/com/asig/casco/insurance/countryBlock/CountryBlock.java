@@ -1,24 +1,23 @@
 package com.asig.casco.insurance.countryBlock;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.UUID;
 
 @Data
-@Entity(name="PERSON")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "country_block", schema = "casco")
+@Table
 public class CountryBlock {
     @Id
     @GeneratedValue
-    @Column(name = "id")
-    private UUID
-            internID;
+    @Column
+    private UUID ID;
 
-    @Column(name = "block_name")
+    @Column
     String blockName;
 }

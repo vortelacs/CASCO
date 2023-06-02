@@ -14,22 +14,4 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
-
-    @Bean
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .build();
-    }
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        DefaultSecurityFilterChain build = http
-                .authorizeRequests(auth -> {
-                    auth.requestMatchers("").permitAll();
-                    auth.anyRequest().authenticated();
-                })
-                .build();
-        return build;
-    }
 }

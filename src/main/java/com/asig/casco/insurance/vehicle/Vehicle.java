@@ -3,11 +3,12 @@ package com.asig.casco.insurance.vehicle;
 import com.asig.casco.tariffCalculator.vehicleType.VehicleType;
 import lombok.Data;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.UUID;
 
 @Data
 @Entity
+@Table(name = "vehicle", schema = "casco")
 public class Vehicle {
 
     @Id
@@ -16,7 +17,6 @@ public class Vehicle {
     private UUID internID;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @Column(name = "type")
     private VehicleType type;
 
     @Column(name = "make")

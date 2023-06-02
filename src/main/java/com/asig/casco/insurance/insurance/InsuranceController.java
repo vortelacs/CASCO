@@ -19,7 +19,7 @@ public class InsuranceController {
         this.insuranceService = insuranceService;
     }
 
-    @GetMapping(value = "/get")
+    @GetMapping(value = "/get{$id}")
     public Insurance getInsurance(@PathVariable UUID id) {
         return insuranceService.getInsurance(id);
     }

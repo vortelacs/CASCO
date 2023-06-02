@@ -17,7 +17,7 @@ public class InsuranceService {
     }
 
     public Insurance getInsurance(UUID id){
-        return insuranceRepository.findByInternID(id);
+        return insuranceRepository.findByID(id);
     }
 
 }

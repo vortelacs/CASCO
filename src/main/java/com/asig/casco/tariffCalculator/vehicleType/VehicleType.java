@@ -4,10 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Data
-@Entity(name="PERSON")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "vehicle_type", schema = "tariff")
