@@ -4,17 +4,22 @@ import com.asig.casco.tariffCalculator.vehicleType.VehicleType;
 import lombok.Data;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.Type;
+import org.hibernate.type.SqlTypes;
+
 import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "vehicle", schema = "casco")
+@Table
 public class Vehicle {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private UUID internID;
+    @GeneratedValue(generator = "uuid2")
+    @Column
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private UUID ID;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private VehicleType type;
@@ -31,6 +36,6 @@ public class Vehicle {
     @Column(name = "price")
     private long price;
 
-    @Column(name = "registrationCertificateNumber")
+    @Column()
     private long registrationCertificateNumber;
 }

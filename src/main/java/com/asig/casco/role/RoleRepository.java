@@ -3,6 +3,6 @@ package com.asig.casco.role;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RoleRepo {
+public interface RoleRepository {
     Role findByRoleName(String RoleName);
 }

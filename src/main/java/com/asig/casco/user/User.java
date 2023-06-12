@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Entity
 @Data
@@ -14,7 +16,8 @@ import jakarta.persistence.*;
 @Table
 public class User {
     @Id
-    private int internID;
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private int ID;
 
     @Column
     private String password;

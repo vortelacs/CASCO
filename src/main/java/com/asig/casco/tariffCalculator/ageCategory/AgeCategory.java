@@ -5,20 +5,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 @Data
-@Entity(name="ageCategory")
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "age_category", schema = "tariff")
+@Table(schema = "tariff")
 public class AgeCategory {
 
     @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private String internID;
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private String ID;
 
-    @Column(name = "category_name")
     private String categoryName;
 
 }

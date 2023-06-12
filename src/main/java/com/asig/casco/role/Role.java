@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
 import java.util.UUID;
 
 @Entity
@@ -15,7 +18,8 @@ import java.util.UUID;
 public class Role {
 
     @Id
-    private UUID id;
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private UUID ID;
 
     @Column
     private String roleName;
