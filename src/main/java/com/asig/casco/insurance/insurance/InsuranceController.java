@@ -11,14 +11,11 @@ import java.util.UUID;
 @Controller
 @RequestMapping(value = "/insurance")
 public class InsuranceController {
-
     InsuranceService insuranceService;
-
     @Autowired
     public InsuranceController(InsuranceService insuranceService){
         this.insuranceService = insuranceService;
     }
-
     @GetMapping(value = "/get{$id}")
     public Insurance getInsurance(@PathVariable UUID id) {
         return insuranceService.getInsurance(id);

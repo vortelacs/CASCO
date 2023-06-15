@@ -7,10 +7,7 @@ import java.util.UUID;
 
 @Service
 public class InsuranceService {
-
-
     InsuranceRepository insuranceRepository;
-
     @Autowired
     public InsuranceService(InsuranceRepository insuranceRepository){
         this.insuranceRepository = insuranceRepository;
