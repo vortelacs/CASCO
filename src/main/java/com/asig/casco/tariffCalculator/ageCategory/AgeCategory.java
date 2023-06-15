@@ -17,7 +17,7 @@ public class AgeCategory {
 
     @Id
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String ID;
+    private String id;
 
     private String categoryName;
 

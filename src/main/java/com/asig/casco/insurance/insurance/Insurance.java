@@ -25,7 +25,7 @@ public class Insurance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private UUID ID;
+    private UUID id;
 
     @Column
     private String type;

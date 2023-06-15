@@ -28,7 +28,7 @@ create table person
     first_name   varchar(30)  not null,
     last_name    varchar(30)  null,
     phone        varchar(10)  null,
-    IDNP         varchar(20)  not null,
+    idnp         varchar(20)  not null,
     phone_number varchar(255) null
 );
 

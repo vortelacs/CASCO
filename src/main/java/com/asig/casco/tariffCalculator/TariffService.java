@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class TariffService {
 
-    private TariffRepository tariffRepository;
-    private AgeCategoryRepository ageCategoryRepository;
-    private AgeCategoryService ageCategoryService;
-    private VehicleTypeService vehicleTypeService;
+    private final TariffRepository tariffRepository;
+    private final AgeCategoryRepository ageCategoryRepository;
+    private final AgeCategoryService ageCategoryService;
+    private final VehicleTypeService vehicleTypeService;
 
 
     @Autowired
-    public void TariffRepository(TariffRepository tariffRepository, AgeCategoryRepository ageCategoryRepository, AgeCategoryService ageCategoryService, VehicleTypeService vehicleTypeService){
+    public TariffService(TariffRepository tariffRepository, AgeCategoryRepository ageCategoryRepository, AgeCategoryService ageCategoryService, VehicleTypeService vehicleTypeService){
         this.tariffRepository = tariffRepository;
         this.ageCategoryRepository = ageCategoryRepository;
         this.ageCategoryService = ageCategoryService;

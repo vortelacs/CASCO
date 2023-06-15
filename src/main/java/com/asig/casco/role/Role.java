@@ -19,7 +19,7 @@ public class Role {
 
     @Id
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private UUID ID;
+    private UUID id;
 
     @Column
     private String roleName;

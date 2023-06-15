@@ -17,7 +17,7 @@ import org.hibernate.type.SqlTypes;
 public class User {
     @Id
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private int ID;
+    private int id;
 
     @Column
     private String password;

@@ -21,7 +21,7 @@ public class Person {
     @Id
     @Column
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private UUID ID;
+    private UUID id;
 
     @Column
     private String firstName;
@@ -33,7 +33,7 @@ public class Person {
     private String phoneNumber;
 
     @Column
-    private String IDNP;
+    private String idnp;
 
 
 }

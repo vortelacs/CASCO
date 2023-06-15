@@ -18,7 +18,7 @@ public class VehicleType {
     @Id
     @Column
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String ID;
+    private String id;
 
     @Column
     private String typeName;

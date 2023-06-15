@@ -5,8 +5,6 @@ import java.util.UUID;
 
 public interface InsurerRepository extends JpaRepository<Insurer, UUID> {
 
-    public Insurer findByID(UUID id);
-
     public Insurer findByCompanyName(String companyName);
 
 }

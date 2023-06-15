@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -17,7 +18,7 @@ public class InsuranceController {
         this.insuranceService = insuranceService;
     }
     @GetMapping(value = "/get{$id}")
-    public Insurance getInsurance(@PathVariable UUID id) {
+    public Optional<Insurance> getInsurance(@PathVariable UUID id) {
         return insuranceService.getInsurance(id);
     }
 }

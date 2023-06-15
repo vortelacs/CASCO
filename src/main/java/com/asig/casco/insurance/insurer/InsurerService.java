@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -16,8 +17,8 @@ public class InsurerService {
         this.insurerRepository = insurerRepository;
     }
 
-    public Insurer getInsurer(UUID id){
-        return insurerRepository.findByID(id);
+    public Optional<Insurer> getInsurer(UUID id){
+        return insurerRepository.findById(id);
     }
     public List<Insurer> findAll(){
         return insurerRepository.findAll();

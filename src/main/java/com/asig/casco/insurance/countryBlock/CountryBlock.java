@@ -19,7 +19,7 @@ public class CountryBlock {
     @GeneratedValue
     @Column
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private UUID ID;
+    private UUID id;
 
     @Column
     String blockName;

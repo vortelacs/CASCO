@@ -11,10 +11,11 @@ import java.util.UUID;
 @Entity
 public class Insurer {
 
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private UUID ID;
+    @Column(insertable = false, updatable = false, nullable = false)
+    private UUID id;
 
     private String companyName;
     private String img;

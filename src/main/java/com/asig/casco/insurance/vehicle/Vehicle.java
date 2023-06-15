@@ -5,7 +5,6 @@ import lombok.Data;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.Type;
 import org.hibernate.type.SqlTypes;
 
 import java.util.UUID;
@@ -19,23 +18,23 @@ public class Vehicle {
     @GeneratedValue(generator = "uuid2")
     @Column
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private UUID ID;
+    private UUID id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private VehicleType type;
 
-    @Column(name = "make")
+    @Column
     private String make;
 
-    @Column(name = "model")
+    @Column
     private String model;
 
-    @Column(name = "year")
+    @Column
     private int year;
 
-    @Column(name = "price")
+    @Column
     private long price;
 
-    @Column()
+    @Column
     private long registrationCertificateNumber;
 }

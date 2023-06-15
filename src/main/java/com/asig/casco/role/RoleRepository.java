@@ -4,5 +4,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RoleRepository {
-    Role findByRoleName(String RoleName);
+    Role findByRoleName(String roleName);
 }

@@ -1,7 +1,5 @@
 package com.asig.casco.insurance.insurer;
 
-import com.asig.casco.insurance.insurance.Insurance;
-import com.asig.casco.insurance.insurance.InsuranceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -25,7 +24,7 @@ public class InsurerController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Insurer> getInsurance(@PathVariable UUID id) {
+    public ResponseEntity<Optional<Insurer>> getInsurance(@PathVariable UUID id) {
         return new ResponseEntity<>(insurerService.getInsurer(id), HttpStatus.OK);
     }
 
