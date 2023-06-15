@@ -12,7 +12,7 @@ import org.hibernate.type.SqlTypes;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "tariff")
+@Table
 public class VehicleType {
 
     @Id

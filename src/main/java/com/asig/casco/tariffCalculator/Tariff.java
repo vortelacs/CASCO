@@ -14,13 +14,13 @@ import org.hibernate.type.SqlTypes;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "tariff")
+@Table
 public class Tariff {
 
     @Id
     @Column
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String ID;
+    private String id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @MapsId
