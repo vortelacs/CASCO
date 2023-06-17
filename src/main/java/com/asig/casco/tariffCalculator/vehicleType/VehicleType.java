@@ -3,10 +3,10 @@ package com.asig.casco.tariffCalculator.vehicleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import javax.persistence.*;
+
 
 @Data
 @Entity
@@ -17,7 +17,7 @@ public class VehicleType {
 
     @Id
     @Column
-    @JdbcTypeCode(SqlTypes.VARCHAR)
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private String id;
 
     @Column

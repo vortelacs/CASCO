@@ -15,6 +15,7 @@ spring:
     password: 1234
     schemas: casco
     driver-class-name: com.mysql.cj.jdbc.Driver
+    locations: db/migration
     enabled: true
 
 

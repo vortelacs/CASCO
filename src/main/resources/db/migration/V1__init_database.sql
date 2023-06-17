@@ -1,3 +1,12 @@
+-- we don't know how to generate root <with-no-name> (class Root) :(
+grant audit_abort_exempt, firewall_exempt, select, system_user on *.* to 'mysql.infoschema'@localhost;
+
+grant audit_abort_exempt, authentication_policy_admin, backup_admin, clone_admin, connection_admin, firewall_exempt, persist_ro_variables_admin, session_variables_admin, shutdown, super, system_user, system_variables_admin on *.* to 'mysql.session'@localhost;
+
+grant audit_abort_exempt, firewall_exempt, system_user on *.* to 'mysql.sys'@localhost;
+
+grant alter, alter routine, application_password_admin, audit_abort_exempt, audit_admin, authentication_policy_admin, backup_admin, binlog_admin, binlog_encryption_admin, clone_admin, connection_admin, create, create role, create routine, create tablespace, create temporary tables, create user, create view, delete, drop, drop role, encryption_key_admin, event, execute, file, firewall_exempt, flush_optimizer_costs, flush_status, flush_tables, flush_user_resources, group_replication_admin, group_replication_stream, index, innodb_redo_log_archive, innodb_redo_log_enable, insert, lock tables, passwordless_user_admin, persist_ro_variables_admin, process, references, reload, replication client, replication slave, replication_applier, replication_slave_admin, resource_group_admin, resource_group_user, role_admin, select, sensitive_variables_observer, service_connection_admin, session_variables_admin, set_user_id, show databases, show view, show_routine, shutdown, super, system_user, system_variables_admin, table_encryption_admin, trigger, update, xa_recover_admin, grant option on *.* to root@localhost;
+
 create table age_category
 (
     id            varchar(36)  not null
@@ -11,7 +20,6 @@ create table country_block
         primary key,
     block_name varchar(80) not null
 );
-
 
 create table insurer
 (
@@ -36,19 +44,8 @@ create table role
 (
     id        varchar(36) not null
         primary key,
-    role_name varchar(50) null
+    role_name varchar(50) not null
 );
-
-create table tariff
-(
-    value           float       null,
-    vehicle_type_id varchar(36) not null
-        primary key,
-    age_category_id varchar(36) null
-);
-
-create index FK44rnelr1uy0otjrybwimfdbql
-    on tariff (age_category_id);
 
 create table user
 (
@@ -58,6 +55,7 @@ create table user
     person_id varchar(36)  null,
     role_id   varchar(36)  null,
     password  varchar(255) null,
+    username  varchar(255) null,
     constraint email
         unique (email),
     constraint user_person_fk
@@ -77,11 +75,33 @@ create table report
         foreign key (user) references user (id)
 );
 
+create table user_roles
+(
+    user_id  varchar(11) not null,
+    roles_id varchar(36) not null,
+    constraint FK55itppkw3i07do3h7qoclqd4k
+        foreign key (user_id) references user (id),
+    constraint FKj9553ass9uctjrmh0gkqsmv0d
+        foreign key (roles_id) references role (id)
+);
+
 create table vehicle_type
 (
     id        varchar(36)  not null
         primary key,
     type_name varchar(255) null
+);
+
+create table tariff
+(
+    value           float       null,
+    vehicle_type_id varchar(36) not null
+        primary key,
+    age_category_id varchar(36) null,
+    constraint FK44rnelr1uy0otjrybwimfdbql
+        foreign key (age_category_id) references age_category (id),
+    constraint FKgjbjebi2svqkxlv94d3yqgnl1
+        foreign key (vehicle_type_id) references vehicle_type (id)
 );
 
 create table vehicle

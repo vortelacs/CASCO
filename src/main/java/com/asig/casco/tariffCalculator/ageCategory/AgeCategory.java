@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -16,7 +16,7 @@ import org.hibernate.type.SqlTypes;
 public class AgeCategory {
 
     @Id
-    @JdbcTypeCode(SqlTypes.VARCHAR)
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private String id;
 
     private String categoryName;

@@ -4,13 +4,12 @@ import com.asig.casco.insurance.countryBlock.CountryBlock;
 import com.asig.casco.insurance.insurer.Insurer;
 import com.asig.casco.insurance.vehicle.Vehicle;
 import com.asig.casco.user.User;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -24,7 +23,7 @@ public class Insurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    @JdbcTypeCode(SqlTypes.VARCHAR)
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
 
     @Column

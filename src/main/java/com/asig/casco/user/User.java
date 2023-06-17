@@ -5,9 +5,13 @@ import com.asig.casco.role.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -16,8 +20,8 @@ import org.hibernate.type.SqlTypes;
 @Table
 public class User {
     @Id
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    private int id;
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    private UUID id;
 
     @Column
     private String password;
@@ -25,10 +29,17 @@ public class User {
     @Column
     private String email;
 
+    @Column
+    private String username;
+
     @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "idPerson", nullable = false)
+    @JoinColumn
     private Person person;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = { @JoinColumn(name = "user_id")},
+            inverseJoinColumns = { @JoinColumn(name = "roles_id")}
+    )
+    private Collection<Role> roles = new ArrayList<>();
 }

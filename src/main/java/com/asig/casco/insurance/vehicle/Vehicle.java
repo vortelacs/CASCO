@@ -2,11 +2,10 @@ package com.asig.casco.insurance.vehicle;
 
 import com.asig.casco.tariffCalculator.vehicleType.VehicleType;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
+import javax.persistence.*;
 import java.util.UUID;
 
 @Data
@@ -17,7 +16,7 @@ public class Vehicle {
     @Id
     @GeneratedValue(generator = "uuid2")
     @Column
-    @JdbcTypeCode(SqlTypes.VARCHAR)
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
 
     @ManyToOne(cascade = CascadeType.ALL)

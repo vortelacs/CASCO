@@ -1,20 +1,21 @@
 package com.asig.casco.insurance.insurer;
 
 import lombok.Data;
-import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 
 import java.util.UUID;
 
 @Data
 @Entity
+@Table
 public class Insurer {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    @JdbcTypeCode(SqlTypes.VARCHAR)
-    @Column(insertable = false, updatable = false, nullable = false)
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    @Column
     private UUID id;
 
     private String companyName;
