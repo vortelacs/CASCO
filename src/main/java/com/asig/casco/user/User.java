@@ -9,6 +9,10 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.UUID;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -17,7 +21,7 @@ import org.hibernate.type.SqlTypes;
 public class User {
     @Id
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private int id;
+    private UUID id;
 
     @Column
     private String password;
@@ -29,6 +33,11 @@ public class User {
 //    @JoinColumn(name = "idPerson", nullable = false)
     private Person person;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = { @JoinColumn(name = "user_id")},
+            inverseJoinColumns = { @JoinColumn(name = "roles_id")}
+    )
+    private Collection<Role> roles = new ArrayList<>();
+
 }

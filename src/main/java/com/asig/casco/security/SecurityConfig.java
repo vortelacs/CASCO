@@ -1,6 +1,7 @@
 package com.asig.casco.security;
 
 import com.asig.casco.user.UserRepository;
+import com.asig.casco.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,22 +29,22 @@ public class SecurityConfig{
 
 
     private final JwtAthFilter jwtAthFilter;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @Lazy
-    public SecurityConfig(JwtAthFilter jwtAthFilter, UserRepository userRepository){
+    public SecurityConfig(JwtAthFilter jwtAthFilter, UserService userService){
         this.jwtAthFilter = jwtAthFilter;
-        this.userRepository = userRepository;
+        this.userService = userService;
 
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http.
-                authorizeHttpRequests().
-                anyRequest().
-                authenticated()
-                .and()
+        http.csrf().disable()
+                .authorizeHttpRequests(auth ->
+                        auth.requestMatchers("/auth/*").permitAll()
+                                .anyRequest().authenticated()
+                )
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -63,7 +64,8 @@ public class SecurityConfig{
         return authenticationProvider;
     }
 
-    private PasswordEncoder passwordEncoder(){
+    @Bean
+    public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
@@ -72,7 +74,7 @@ public class SecurityConfig{
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return (UserDetails) userRepository.findByEmail(username);
+                return (UserDetails) userService.loadUserByUsername(username);
             }
         };
     }

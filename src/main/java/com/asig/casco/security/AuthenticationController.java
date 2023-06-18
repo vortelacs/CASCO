@@ -21,7 +21,7 @@ public class AuthenticationController {
     private final UserDetailsService userDetailsService;
 private final JwtUtils jwtUtils;
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public ResponseEntity<String> authenticate(
             @RequestBody AuthenticationRequest request){
         authenticationManager.authenticate(
@@ -33,4 +33,18 @@ private final JwtUtils jwtUtils;
         }
         return ResponseEntity.status(400).body("Could not generate token");
     }
+
+
+//    @PostMapping("/signup")
+//    public ResponseEntity<String> signUp(
+//            @RequestBody AuthenticationRequest request){
+//        authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+//        );
+//        final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
+//        if(userDetails != null){
+//            return ResponseEntity.ok(jwtUtils.generateToken(userDetails));
+//        }
+//        return ResponseEntity.status(400).body("Could not generate token");
+//    }
 }

@@ -2,6 +2,7 @@ package com.asig.casco;
 
 import com.asig.casco.role.Role;
 import com.asig.casco.user.User;
+import com.asig.casco.user.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +18,7 @@ public class CascoApplication {
         SpringApplication.run(CascoApplication.class, args);
     }
 
-/*    @Bean
+    @Bean
     CommandLineRunner run(UserService userService){
 
         return args ->{
@@ -30,12 +31,12 @@ public class CascoApplication {
             userService.saveUser(new User(UUID.fromString("2f7b985c-0c9b-11ee-be56-0242ac120002"), "12345","johndoy2@mail.ru", null,  new ArrayList<>()));
             userService.saveUser(new User(UUID.fromString("5356319c-0c9b-11ee-be56-0242ac120002"), "123456","johndoy3@mail.ru", null,  new ArrayList<>()));
 
-            userService.addRoleToUser("johndoy1", "ROLE_USER");
-            userService.addRoleToUser("johndoy2", "ROLE_ADMIN");
-            userService.addRoleToUser("johndoy3", "ROLE_USER");
+            userService.addRoleToUser("johndoy1@mail.ru", "ROLE_USER");
+            userService.addRoleToUser("johndoy2@mail.ru", "ROLE_ADMIN");
+            userService.addRoleToUser("johndoy3@mail.ru", "ROLE_USER");
 
         };
 
-    }*/
+    }
 
 }
