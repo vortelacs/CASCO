@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.UUID;
+
 @Controller
 public class TariffController {
 
@@ -16,7 +18,7 @@ public class TariffController {
     }
 
     @GetMapping("/tariffCalc")
-    public Float getPrice(@RequestParam(value = "carType") String type, @RequestParam(value = "carAge") int carAge){
-        return tariffService.getPrice(type, carAge);
+    public Float getPrice(@RequestParam(value = "carType") String type, @RequestParam(value = "carAge") int carAge, @RequestParam(value = "carType") String insurerName){
+        return tariffService.getPrice(type, carAge, insurerName);
     }
 }

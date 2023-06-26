@@ -1,4 +1,4 @@
-package com.asig.casco.tariffCalculator.ageCategory;
+package com.asig.casco.tariffCalculator.vehicleType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,17 +8,22 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.UUID;
+
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
-public class AgeCategory {
+public class VehicleType {
 
     @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.UUID)
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String id;
+    private UUID id;
 
-    private String categoryName;
+    @Column
+    private String typeName;
 
 }

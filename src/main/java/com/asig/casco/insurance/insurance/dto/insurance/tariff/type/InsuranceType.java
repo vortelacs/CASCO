@@ -1,24 +1,26 @@
-package com.asig.casco.tariffCalculator.vehicleType;
+package com.asig.casco.insurance.insurance.dto.insuranceTariff.type;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.UUID;
+
 @Data
-@Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Entity
 @Table
-public class VehicleType {
+public class InsuranceType {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    private String id;
+    private UUID id;
 
     @Column
     private String typeName;
