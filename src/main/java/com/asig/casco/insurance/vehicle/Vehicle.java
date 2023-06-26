@@ -1,9 +1,11 @@
 package com.asig.casco.insurance.vehicle;
 
-import com.asig.casco.tariffCalculator.vehicleType.VehicleType;
+import com.asig.casco.tariff.vehicleType.VehicleType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -12,6 +14,8 @@ import java.util.UUID;
 @Data
 @Entity
 @Table
+@AllArgsConstructor
+@NoArgsConstructor
 public class Vehicle {
 
     @Id
@@ -33,8 +37,23 @@ public class Vehicle {
     private int year;
 
     @Column
-    private long price;
+    private float price;
 
     @Column
-    private long registrationCertificateNumber;
+    String certificateNumber;
+
+    public Vehicle(VehicleType type, String make, String model, int year, long price, String registrationNumber, String certificateNumber) {
+        this.type = type;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+        this.price = price;
+        this.certificateNumber = certificateNumber;
+        this.registrationNumber = registrationNumber;
+    }
+
+    @Column
+    private String registrationNumber;
+
+
 }

@@ -1,4 +1,4 @@
-package com.asig.casco.tariffCalculator.ageCategory;
+package com.asig.casco.tariff.age;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +23,7 @@ public class AgeCategory {
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
 
+    @Column
     private String categoryName;
 
     @Column

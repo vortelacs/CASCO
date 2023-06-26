@@ -23,4 +23,8 @@ public class CountryBlock {
 
     @Column
     String blockName;
+
+    public CountryBlock(String blockName) {
+        this.blockName = blockName;
+    }
 }

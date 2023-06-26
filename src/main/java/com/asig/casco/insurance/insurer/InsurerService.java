@@ -24,4 +24,8 @@ public class InsurerService {
         return insurerRepository.findAll();
     }
 
+    public Insurer getInsurerByCompanyName(String companyName){
+        return insurerRepository.findByCompanyName(companyName);
+    }
+
 }

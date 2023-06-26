@@ -20,7 +20,7 @@ public class PersonService {
         return personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person not found with id: " + id));
     }
 
-    public Person createPerson(Person person) {
+    public Person savePerson(Person person) {
         return personRepository.save(person);
     }
 

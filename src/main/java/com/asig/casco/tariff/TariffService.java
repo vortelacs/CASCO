@@ -1,59 +1,64 @@
-package com.asig.casco.tariffCalculator;
+package com.asig.casco.tariff;
 
+import com.asig.casco.insurance.insurance.dto.insurance.tariff.type.InsuranceType;
+import com.asig.casco.insurance.insurance.dto.insurance.tariff.type.InsuranceTypeRepository;
 import com.asig.casco.insurance.insurer.Insurer;
 import com.asig.casco.insurance.insurer.InsurerService;
-import com.asig.casco.tariffCalculator.vehicleType.VehicleType;
-import com.asig.casco.tariffCalculator.vehicleType.VehicleTypeService;
-import lombok.RequiredArgsConstructor;
+import com.asig.casco.tariff.age.AgeCategory;
+import com.asig.casco.tariff.age.AgeCategoryService;
+import com.asig.casco.tariff.age.TariffDTO;
+import com.asig.casco.tariff.vehicleType.VehicleType;
+import com.asig.casco.tariff.vehicleType.VehicleTypeService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class TariffService {
 
     private final TariffRepository tariffRepository;
     private final InsurerService insurerService;
     private final VehicleTypeService vehicleTypeService;
+    private final AgeCategoryService ageCategoryService;
+    private final InsuranceTypeRepository insuranceTypeRepository;
 
 
-    private Float calculate(String ageCategoryByCategoryName, VehicleType vehicleTypeByTypeName, Insurer insurer) {
-        Tariff tariff = tariffRepository.findByAgeCategoryAndVehicleType(ageCategoryByCategoryName, vehicleTypeByTypeName);
+    private Float calculate(Insurer insurer, InsuranceType insuranceType, AgeCategory ageCategory, VehicleType vehicleType, boolean isFranchise, float carPrice) {
+        Tariff tariff = tariffRepository.findByInsurerAndInsuranceTypeAndVehicleTypeAndAgeCategoryAndIsFranchise(insurer, insuranceType, vehicleType, ageCategory, isFranchise);
 
-        return tariff.getValue();
+        return tariff.getValue() / 100 * carPrice;
     }
 
 
-    public Float getPrice(String vehicleType, int ageCategory, String insurerName){
+    public Float calculateTariff(TariffDTO tariffDTO, float carPrice){
 
-        return calculate(ageToAgeCategory(ageCategory),
-                vehicleTypeService.getVehicleTypeByTypeName(vehicleType),
-                insurerService.getInsurerByCompanyName(insurerName)
+        Insurer insurer = insurerService.getInsurerByCompanyName(tariffDTO.getInsurer());
+        List<AgeCategory> ageCategories = (List<AgeCategory>) insurer.getAgeCategories();
+        AgeCategory ageCategory = null;
+
+        for (AgeCategory ageCat : ageCategories) {
+            if (ageCat.getMinAge() <= tariffDTO.getAge() && tariffDTO.getAge() <= ageCat.getMaxAge()) {
+                ageCategory = ageCat;
+            }
+        }
+
+
+        return calculate(insurer,
+                insuranceTypeRepository.getByTypeName(tariffDTO.getInsuranceType()),
+                ageCategory,
+                vehicleTypeService.getVehicleTypeByTypeName(tariffDTO.getVehicleType()),
+                tariffDTO.getIsFranchise(),
+                carPrice
                 );
     }
 
-    public String ageToAgeCategory(int age){
+    public double calculateMinimumTariffByInsurer(String insurer) {
+        // find the minimum tariff for the given insurer
+        List<Tariff> tariffs = tariffRepository.getTariffsByInsurer(insurerService.getInsurerByCompanyName(insurer));
+        // return the minimum tariff
+        return tariffs.stream().mapToDouble(Tariff::getValue).min().orElse(Double.NaN);
 
-        if(age >= 0 && age <= 2){
-            return "under_two";
-        }
-        else if(age == 3 || age == 4){
-            return "between_three_and_four";
-        }
-        else if(age == 5 || age == 6){
-            return "between_five_and_six";
-        }
-        else if(age >= 7 && age <= 9){
-            return "between_seven_and_nine";
-        }
-        else
-            return "above_ten";
     }
-}
-
-enum AgeCategory{
-    UNDER_TWO,
-    BETWEEN_THREE_AND_FOUR,
-    BETWEEN_FIVE_AND_SIX,
-    BETWEEN_SEVEN_AND_NINE,
-    ABOVE_TEN
 }

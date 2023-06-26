@@ -18,9 +18,15 @@ import java.util.UUID;
 public class Role {
 
     @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.UUID)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
 
     @Column
     private String roleName;
+
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
 }

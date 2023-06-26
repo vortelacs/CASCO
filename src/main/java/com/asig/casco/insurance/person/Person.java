@@ -20,8 +20,16 @@ public class Person {
 
     @Id
     @Column
+    @GeneratedValue(strategy = GenerationType.UUID)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
+
+    public Person(String firstName, String lastName, String phone, String idnp) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.idnp = idnp;
+    }
 
     @Column
     private String firstName;
@@ -30,7 +38,7 @@ public class Person {
     private String lastName;
 
     @Column
-    private String phoneNumber;
+    private String phone;
 
     @Column
     private String idnp;

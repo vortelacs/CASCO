@@ -2,7 +2,6 @@ package com.asig.casco.user;
 
 import com.asig.casco.role.Role;
 import com.asig.casco.role.RoleRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -49,7 +48,7 @@ public class UserService implements UserDetailsService {
         user.getRoles().add(role);
     }
 
-    public User getUser(String email){
+    public User getUserByEmail(String email){
         return userRepository.findByEmail(email);
     }
 

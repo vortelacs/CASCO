@@ -1,4 +1,4 @@
-package com.asig.casco.insurance.insurance.dto.insuranceTariff.type;
+package com.asig.casco.insurance.insurance.dto.insurance.tariff.type;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.asig.casco.tariffCalculator.vehicleType;
+package com.asig.casco.tariff.vehicleType;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

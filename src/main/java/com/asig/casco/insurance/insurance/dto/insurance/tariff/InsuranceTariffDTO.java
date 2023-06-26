@@ -1,4 +1,4 @@
-package com.asig.casco.insurance.insurance.dto.insuranceTariff;
+package com.asig.casco.insurance.insurance.dto.insurance.tariff;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

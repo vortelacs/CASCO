@@ -1,4 +1,4 @@
-package com.asig.casco.tariffCalculator.vehicleType;
+package com.asig.casco.tariff.vehicleType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

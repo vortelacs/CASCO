@@ -1,8 +1,9 @@
-package com.asig.casco.tariffCalculator;
+package com.asig.casco.tariff;
 
-import com.asig.casco.insurance.insurance.dto.insuranceTariff.type.InsuranceType;
+import com.asig.casco.insurance.insurance.dto.insurance.tariff.type.InsuranceType;
 import com.asig.casco.insurance.insurer.Insurer;
-import com.asig.casco.tariffCalculator.vehicleType.VehicleType;
+import com.asig.casco.tariff.age.AgeCategory;
+import com.asig.casco.tariff.vehicleType.VehicleType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,9 @@ public class Tariff {
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
 
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId
-    private String ageCategory;
+    private AgeCategory ageCategory;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @MapsId

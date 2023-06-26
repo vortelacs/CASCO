@@ -19,7 +19,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table
 public class User {
+
     @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.UUID)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
 
@@ -36,8 +39,14 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = { @JoinColumn(name = "user_id")},
-            inverseJoinColumns = { @JoinColumn(name = "roles_id")}
+            inverseJoinColumns = { @JoinColumn(name = "role_id")}
     )
     private Collection<Role> roles = new ArrayList<>();
 
+    public User(String password, String email, Person person, Collection<Role> roles) {
+        this.password = password;
+        this.email = email;
+        this.person = person;
+        this.roles = roles;
+    }
 }
