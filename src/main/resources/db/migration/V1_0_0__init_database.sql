@@ -79,14 +79,11 @@ create table user
         primary key,
     email     varchar(20)  not null,
     person_id varchar(36)  null,
-    role_id   varchar(36)  null,
     password  varchar(255) null,
     constraint email
         unique (email),
     constraint user_person_fk
-        foreign key (person_id) references person (id),
-    constraint user_role_fk
-        foreign key (role_id) references role (id)
+        foreign key (person_id) references person (id)
 );
 
 create table report
