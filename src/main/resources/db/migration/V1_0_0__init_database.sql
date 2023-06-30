@@ -157,3 +157,30 @@ create table user_roles
         foreign key (role_id) references role (id)
 );
 
+create table news
+(
+    id               varchar(36) not null
+        primary key,
+    title varchar(255) not null,
+    img    varchar(255) not null
+);
+
+create table partner
+(
+    id               varchar(36) not null
+        primary key,
+    name varchar(50) not null,
+    img    varchar(255) not null
+);
+
+
+create table insurer_age_category
+(
+    insurer_id varchar(36) not null,
+    age_category_id    varchar(36) not null,
+    constraint insurer_age_category_insurer_fk
+        foreign key (insurer_id) references insurer (id),
+    constraint insurer_age_category_age_category_fk
+        foreign key (age_category_id) references age_category (id)
+);
+

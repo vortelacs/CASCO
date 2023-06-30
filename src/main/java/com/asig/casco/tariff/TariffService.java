@@ -6,7 +6,6 @@ import com.asig.casco.insurance.insurer.Insurer;
 import com.asig.casco.insurance.insurer.InsurerService;
 import com.asig.casco.tariff.age.AgeCategory;
 import com.asig.casco.tariff.age.AgeCategoryService;
-import com.asig.casco.tariff.age.TariffDTO;
 import com.asig.casco.tariff.vehicleType.VehicleType;
 import com.asig.casco.tariff.vehicleType.VehicleTypeService;
 import lombok.AllArgsConstructor;
@@ -32,7 +31,7 @@ public class TariffService {
     }
 
 
-    public Float calculateTariff(TariffDTO tariffDTO, float carPrice){
+    public Float calculateTariff(TariffDTO tariffDTO){
 
         Insurer insurer = insurerService.getInsurerByCompanyName(tariffDTO.getInsurer());
         List<AgeCategory> ageCategories = (List<AgeCategory>) insurer.getAgeCategories();
@@ -44,14 +43,13 @@ public class TariffService {
             }
         }
 
-
-        return calculate(insurer,
+        return tariffRepository.findByInsurerAndInsuranceTypeAndVehicleTypeAndAgeCategoryAndIsFranchise (
+                insurer,
                 insuranceTypeRepository.getByTypeName(tariffDTO.getInsuranceType()),
-                ageCategory,
                 vehicleTypeService.getVehicleTypeByTypeName(tariffDTO.getVehicleType()),
-                tariffDTO.getIsFranchise(),
-                carPrice
-                );
+                ageCategory,
+                tariffDTO.getIsFranchise())
+                .getValue();
     }
 
     public double calculateMinimumTariffByInsurer(String insurer) {

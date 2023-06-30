@@ -39,7 +39,7 @@ public class Insurer {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "insurer_age_category",
             joinColumns = { @JoinColumn(name = "insurer_id")},
-            inverseJoinColumns = { @JoinColumn(name = "age_catoegory_id")}
+            inverseJoinColumns = { @JoinColumn(name = "age_category_id")}
     )
     private Collection<AgeCategory> ageCategories = new ArrayList<>();
 

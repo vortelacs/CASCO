@@ -1,4 +1,4 @@
-package com.asig.casco.tariff.age;
+package com.asig.casco.tariff;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
