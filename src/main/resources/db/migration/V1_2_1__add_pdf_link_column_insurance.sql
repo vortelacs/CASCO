@@ -1,0 +1,2 @@
+ALTER TABLE insurance
+    ADD COLUMN pdf_link VARCHAR(255) NULL;

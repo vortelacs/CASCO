@@ -25,6 +25,7 @@ public class InsuranceDTO {
     private String countryBlock;
     private String effectiveDate;
     private String expireDate;
-
+    private String user;
+    private Float price;
 
 }

@@ -21,3 +21,17 @@ spring:
 server:
   error:
     include-message: always
+
+cloud:
+  aws:
+    credentials:
+      access-key: AKIATK47N2QJMK2QTBHL
+      secret-key: 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
+    region:
+      static: eu-north-1
+    stack:
+      auto: false
+
+application:
+  bucket:
+    name: casco-md-asets

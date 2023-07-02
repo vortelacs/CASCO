@@ -19,8 +19,8 @@ import java.util.UUID;
 public class Vehicle {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
     @Column
+    @GeneratedValue(strategy = GenerationType.UUID)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
 

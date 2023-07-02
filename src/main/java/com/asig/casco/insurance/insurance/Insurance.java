@@ -12,6 +12,7 @@ import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,8 +28,8 @@ import java.util.UUID;
 public class Insurance {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
+    @GeneratedValue(strategy = GenerationType.UUID)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
 
@@ -38,7 +39,7 @@ public class Insurance {
     @OneToOne
     private Vehicle vehicle;
 
-    @OneToOne
+    @ManyToOne
     private User user;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -58,12 +59,12 @@ public class Insurance {
     private CountryBlock countryBlock;
 
     @Column
-    private LocalDateTime effectiveDate;
+    private LocalDate effectiveDate;
 
     @Column
-    private LocalDateTime expireDate;
+    private LocalDate expireDate;
 
-    public Insurance(InsuranceType insuranceType, Float price, Vehicle vehicle, User user, Insurer insurer, CountryBlock countryBlock, LocalDateTime effectiveDate, LocalDateTime expireDate, Collection<Person> persons) {
+    public Insurance(InsuranceType insuranceType, Float price, Vehicle vehicle, User user, Insurer insurer, CountryBlock countryBlock, LocalDate effectiveDate, LocalDate expireDate, Collection<Person> persons) {
         this.insuranceType = insuranceType;
         this.vehicle = vehicle;
         this.user = user;
@@ -74,4 +75,7 @@ public class Insurance {
         this.price = price;
         this.persons = persons;
     }
+
+    @Column
+    private String pdfLink;
 }
