@@ -5,7 +5,7 @@ import com.asig.casco.insurance.insurance.InsuranceService;
 import com.asig.casco.insurance.insurance.dto.insurance.InsuranceDTO;
 import com.asig.casco.insurance.person.PersonMapper;
 import com.asig.casco.insurance.vehicle.VehicleMapper;
-import com.asig.casco.pdfGenerator.amazon2.StorageService;
+import com.asig.casco.pdfGenerator.amazon.StorageService;
 import com.asig.casco.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 

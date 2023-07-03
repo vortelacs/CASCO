@@ -1,21 +1,14 @@
 package com.asig.casco.pdfGenerator;
 
-import com.amazonaws.HttpMethod;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.asig.casco.insurance.insurance.dto.insurance.InsuranceDTO;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDMMType1Font;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Date;
 
 
 @Component
@@ -28,12 +21,69 @@ public class PdfGenerator {
 
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
                 contentStream.beginText();
-                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                contentStream.newLineAtOffset(100, 700);
-                contentStream.showText("Hello, World!");
+                contentStream.setFont(PDMMType1Font.TIMES_ROMAN, 12);
+                float x = 100;
+                float y = 700;
+                float lineHeight = 16;
+
+                contentStream.newLineAtOffset(x, y);
+                String[] lines = {
+                        "Date asigurare:",
+                        "Tipul de asigurare                  :   " + insurance.getInsuranceType(),
+                        "Valabil de la                       :   " + insurance.getEffectiveDate(),
+                        "Valabil pana la                     :   " + insurance.getEffectiveDate(),
+                        "",
+                        "Date sofer:",
+                        "Prenume                             :   " + insurance.getPersons().get(0).getFirstName(),
+                        "Nume                                :   " + insurance.getPersons().get(0).getLastName(),
+                        "Email                               :   " + insurance.getPersons().get(0).getEmail(),
+                        "Telefon                             :   " + insurance.getPersons().get(0).getPhone()
+                };
+
+                for (String line : lines) {
+                    contentStream.showText(line);
+                    contentStream.newLineAtOffset(0, -lineHeight);
+                }
+
+
+                if (insurance.getPersons().size() == 2) {
+                    String[] additionalPersonLines = {
+                            "",
+                            "Date sofer aditional:",
+                            "Prenume                         :   " + insurance.getPersons().get(1).getFirstName(),
+                            "Nume                            :   " + insurance.getPersons().get(1).getLastName(),
+                            "Email                           :   " + insurance.getPersons().get(1).getEmail(),
+                            "Telefon                         :   " + insurance.getPersons().get(1).getPhone()
+                    };
+
+                    for (String line : additionalPersonLines) {
+                        contentStream.showText(line); // Show the text without new line
+                        contentStream.newLineAtOffset(0, -lineHeight);
+                    }
+                }
+
+                // Draw the remaining lines of text
+                String[] remainingLines = {
+                        "",
+                        "Date vehicul:",
+//                        "Tip                                 :   " + insurance.getVehicle().getType(),
+                        "Marca                               :   " + insurance.getVehicle().getMake(),
+                        "Model                               :   " + insurance.getVehicle().getModel(),
+                        "Anul                                :   " + insurance.getVehicle().getYear(),
+                        "Numar certificat de inregistrare    :   " + insurance.getVehicle().getCertificateNumber(),
+                        "Numar inmatriculare                 :   " + insurance.getVehicle().getRegistrationNumber(),
+                        "",
+                        "",
+                        "Pretul                          :   " + insurance.getPrice()
+                };
+
+                for (String line : remainingLines) {
+                    contentStream.showText(line); // Show the text without new line
+                    contentStream.newLineAtOffset(0, -lineHeight);
+                }
+
                 contentStream.endText();
             }
-
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             document.save(outputStream);
             return outputStream.toByteArray();

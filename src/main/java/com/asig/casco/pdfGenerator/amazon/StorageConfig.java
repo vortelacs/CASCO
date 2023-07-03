@@ -1,4 +1,4 @@
-package com.asig.casco.pdfGenerator.amazon2;
+package com.asig.casco.pdfGenerator.amazon;
 
 
 import com.amazonaws.auth.AWSCredentials;
